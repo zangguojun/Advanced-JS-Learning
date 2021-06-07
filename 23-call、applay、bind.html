@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>call、apply、bind</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    Function.prototype.bind = function bind(context = window, ...args1) {
+      return (...args2) => {
+        // this.call(context, ...args1, ...args2)
+        this.apply(context, [...args1, ...args2])
+      }
+    }
+    let obj = {
+      name: 'obj'
+    }
+    function func(x) {
+      console.log(arguments);
+      console.log(this);
+    }
+    func.call() // '[object Window]'
+    func.call(null) // '[object Window]'
+    func.call(undefined) // '[object Window]'
+    func.call(11) // '[object Window]'
+    document.body.onclick = func;
+    document.body.onclick = func();
+    document.body.onclick = func.bind(obj, 10)
+    setTimeout(func.bind(obj, 10), 1000);
+  </script>
+</body>
+
+</html>

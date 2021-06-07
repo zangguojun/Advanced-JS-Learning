@@ -54,3 +54,26 @@ function c() {
   console.log(f2);
 }
 c()
+
+console.log('--------------------');
+
+function Fn() {
+  this.a = 0;
+  this.b = function () {
+    console.log(this.a);
+  }
+}
+Fn.prototype = {
+  b: function () {
+    this.a = 20
+    console.log(this.a);
+  },
+  c: function () {
+    this.a = 30
+    console.log(this.a);
+  }
+}
+Fn.prototype.constructor = Fn
+var my_fun = new Fn();
+my_fun.b()
+my_fun.c()
