@@ -48,3 +48,9 @@ console.log(obj3);
 
 console.log('--------------------');
 
+function fn1() { console.log(1); }
+function fn2() { console.log(2); }
+fn1.call(fn2);
+fn1.call.call(fn2);
+Function.prototype.call(fn1);
+Function.prototype.call.call(fn1);
