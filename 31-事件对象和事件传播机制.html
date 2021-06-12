@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件对象和事件传播机制</title>
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <a href="javascript:;">AAA</a>
+  <a href="http://www.baidu.com" id='link'>AAA</a>
+  <script>
+    box.onclick = function bc(ev) {
+      console.log(ev);
+    }
+
+    document.onkeydown = function bc(ev) {
+      console.log(ev);
+    }
+
+    window.onload = function bc(ev) {
+      console.log(ev);
+    }
+
+    box.ontouchstart = function bc(ev) {
+      console.log(ev);
+      let point = ev.changedTouches[0]
+      console.log(point);
+    }
+
+    link.onclick = function (ev) {
+      ev.preventDefault()
+    }
+  </script>
+  ==========================
+  <style>
+    #outer {
+      width: 300px;
+      height: 300px;
+      background-color: red;
+    }
+
+    #inner {
+      margin: auto;
+      width: 200px;
+      height: 200px;
+      background-color: green;
+    }
+
+    #center {
+      margin: auto;
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+    }
+  </style>
+  <div id="outer">
+    <div id="inner">
+      <div id="center"></div>
+    </div>
+  </div>
+
+  <script>
+    document.body.onclick = function (ev) {
+      console.log('body', ev);
+    }
+    outer.onclick = function (ev) {
+      console.log('outer', ev);
+    }
+    inner.onclick = function (ev) {
+      console.log('inner', ev);
+    }
+    center.onclick = function (ev) {
+      console.log('center', ev);
+    }
+  </script>
+
+  <br>
+  <style>
+    #outer1 {
+      width: 300px;
+      height: 300px;
+      background-color: red;
+    }
+
+    #inner1 {
+      position: relative;
+      top: 50px;
+      left: 50px;
+      width: 200px;
+      height: 200px;
+      background-color: green;
+    }
+  </style>
+
+  <div id="outer1">
+    <div id="inner1"></div>
+  </div>
+
+  <script>
+    document.body.onmouseover = function () {
+      // console.log('body over');
+    }
+    outer1.onmouseover = function () {
+      console.log('outer1 over');
+    }
+    inner1.onmouseover = function () {
+      console.log('inner1 over');
+    }
+
+    document.body.onmouseout = function () {
+      // console.log('body out');
+    }
+    outer1.onmouseout = function () {
+      console.log('outer1 out');
+    }
+    inner1.onmouseout = function () {
+      console.log('inner1 out');
+    }
+  </script>
+  <br>
+  <style>
+    #outer2 {
+      width: 300px;
+      height: 300px;
+      background-color: red;
+    }
+
+    #inner2 {
+      position: relative;
+      top: 50px;
+      left: 50px;
+      width: 200px;
+      height: 200px;
+      background-color: green;
+    }
+  </style>
+
+  <div id="outer2">
+    <div id="inner2"></div>
+  </div>
+
+  <script>
+    document.body.onmouseenter = function () {
+      console.log('body enter');
+    }
+    outer2.onmouseenter = function () {
+      console.log('outer2 enter');
+    }
+    inner2.onmouseenter = function () {
+      console.log('inner2 enter');
+    }
+
+    document.body.onmouseleave = function () {
+      console.log('body leave');
+    }
+    outer2.onmouseleave = function () {
+      console.log('outer2 leave');
+    }
+    inner2.onmouseleave = function () {
+      console.log('inner2 leave');
+    }
+  </script>
+
+</body>
+
+</html>
