@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX</title>
+</head>
+
+<body>
+  <script>
+    //1、创建AJAX实例对象
+    let xhr = new XMLHttpRequest();
+    //2、打开URL（发送请求之前的一些处理
+    //最后一个参数代表同步或者异步（true:异步 false:同步）
+    xhr.open('get', './test.json', true)
+    //3、监听状态信息
+    xhr.onreadystatechange = function () {
+      // xhr.readyState ajax状态 0-4
+      // xhr.status xhr.statusText 服务器返回的网络状态码 
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log(JSON.parse(xhr.response));
+      }
+    }
+
+    //4、发送请求（请求主体的信息会基于send发送给服务器）
+    xhr.send(null)
+
+  </script>
+</body>
+
+</html>
